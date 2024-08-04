@@ -3,12 +3,16 @@ kind: Application
 metadata:
   name: library-front
   namespace: argocd
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: myapp=your-dockerhub-username/library-front
+    argocd-image-updater.argoproj.io/myapp.update-strategy: latest
+    argocd-image-updater.argoproj.io/myapp.allow-tags: regexp:^[0-9a-f]{40}$
 spec:
   project: default
   source:
     repoURL: https://github.com/pang2moa/library-infra.git
-    path: applications/library-front
     targetRevision: HEAD
+    path: applications/library-front
   destination:
     server: https://kubernetes.default.svc
     namespace: default
