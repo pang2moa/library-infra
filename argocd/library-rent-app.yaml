@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/vkdahdk/infra.git
+    repoURL: https://github.com/pang2moa/library-infra.git
     path: applications/MSA-Member
     targetRevision: HEAD
   destination:
