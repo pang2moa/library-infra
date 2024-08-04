@@ -1,0 +1,91 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: library-front
+spec:
+  hosts:
+  - "library-front.vm.com"
+  gateways:
+  - library-gateway
+  http:
+  - route:
+    - destination:
+        host: library-front
+        port:
+          number: 80
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: library-member
+spec:
+  hosts:
+  - "library-member.vm.com"
+  gateways:
+  - library-gateway
+  http:
+  - match:
+    - uri:
+        prefix: /api/Member/
+    route:
+    - destination:
+        host: library-member
+        port:
+          number: 8080
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: library-rent
+spec:
+  hosts:
+  - "library-rent.vm.com"
+  gateways:
+  - library-gateway
+  http:
+  - match:
+    - uri:
+        prefix: /api/RentalCard/
+    route:
+    - destination:
+        host: library-rent
+        port:
+          number: 8080
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: library-book
+spec:
+  hosts:
+  - "library-book.vm.com"
+  gateways:
+  - library-gateway
+  http:
+  - match:
+    - uri:
+        prefix: /api/book/
+    route:
+    - destination:
+        host: library-book
+        port:
+          number: 8080
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: library-bestbook
+spec:
+  hosts:
+  - "library-bestbook.vm.com"
+  gateways:
+  - library-gateway
+  http:
+  - match:
+    - uri:
+        prefix: /api/books/
+    route:
+    - destination:
+        host: library-bestbook
+        port:
+          number: 8080

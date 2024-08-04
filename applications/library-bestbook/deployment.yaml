@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: library-bestbook
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: library-bestbook
+  template:
+    metadata:
+      labels:
+        app: library-bestbook
+    spec:
+      containers:
+      - name: library-bestbook
+        image: vkdahdk/library-bestbook:latest
+        ports:
+        - containerPort: 8080
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: production
+        - name: JAVA_OPTS
+          value: "-Xmx512m -Xms256m"
+        # Add any other environment variables needed for your Spring Boot app

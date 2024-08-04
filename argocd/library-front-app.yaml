@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: library-front
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/vkdahdk/infra.git
+    path: applications/library-front
+    targetRevision: HEAD
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

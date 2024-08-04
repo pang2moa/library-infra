@@ -1,0 +1,18 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: library-gateway
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - "library-front.vm.com"
+    - "library-member.vm.com"
+    - "library-rent.vm.com"
+    - "library-book.vm.com"
+    - "library-bestbook.vm.com"

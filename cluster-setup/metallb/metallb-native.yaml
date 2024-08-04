@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: metallb-system
+  labels:
+    pod-security.kubernetes.io/enforce: privileged
+---
+apiVersion: operator.metallb.io/v1beta1
+kind: MetalLB
+metadata:
+  name: metallb
+  namespace: metallb-system

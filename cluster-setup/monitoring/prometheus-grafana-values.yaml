@@ -1,0 +1,16 @@
+grafana:
+  adminPassword: "your-secure-password"
+  persistence:
+    enabled: true
+    size: 10Gi
+
+prometheus:
+  prometheusSpec:
+    retention: 15d
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 50Gi
